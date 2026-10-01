@@ -11,6 +11,11 @@ inputs:
     description: Number of threads
     required: true
 
+  run_test:
+    description: Whether to run the performance test
+    required: true
+    default: "true"
+
 outputs:
   test-result:
     description: Performance test result
@@ -25,10 +30,16 @@ runs:
       run: |
         echo "Environment: ${{ inputs.environment }}"
         echo "Threads: ${{ inputs.threads }}"
+        echo "Run test: ${{ inputs.run_test }}"
 
     - name: Run performance test
       id: test
       shell: bash
       run: |
-        echo "Running performance test..."
-        echo "result=passed" >> "$GITHUB_OUTPUT"
+        if [ "${{ inputs.run_test }}" = "true" ]; then
+          echo "Running performance test..."
+          echo "result=passed" >> "$GITHUB_OUTPUT"
+        else
+          echo "Skipping performance test..."
+          echo "result=skipped" >> "$GITHUB_OUTPUT"
+        fi

@@ -17,6 +17,7 @@ jobs:
         with:
           environment: production
           threads: 100
+          run_test: true
 
       - name: Show test result
         run: |
