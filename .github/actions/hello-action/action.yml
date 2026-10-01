@@ -1,0 +1,28 @@
+name: Hello Composite Action
+
+description: My first composite action
+
+inputs:
+  environment:
+    description: Test environment
+    required: true
+
+  threads:
+    description: Number of threads
+    required: true
+
+runs:
+  using: composite
+
+  steps:
+    - name: Show test parameters
+      shell: bash
+      run: |
+        echo "Environment: ${{ inputs.environment }}"
+        echo "Threads: ${{ inputs.threads }}"
+
+    - name: Run performance test
+      shell: bash
+      run: |
+        echo "Running performance test..."
+name: composite
