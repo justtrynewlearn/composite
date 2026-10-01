@@ -12,7 +12,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run composite action
+        id: performance
         uses: ./.github/actions/hello-action
         with:
           environment: production
           threads: 100
+
+      - name: Show test result
+        run: |
+          echo "Test result from composite action: ${{ steps.performance.outputs.test-result }}"
