@@ -25,4 +25,3 @@ runs:
       shell: bash
       run: |
         echo "Running performance test..."
-name: composite
