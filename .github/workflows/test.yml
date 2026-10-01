@@ -14,5 +14,5 @@ jobs:
       - name: Run composite action
         uses: ./.github/actions/hello-action
         with:
-          environment: staging
-          threads: 50
+          environment: production
+          threads: 100

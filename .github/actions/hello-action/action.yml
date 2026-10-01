@@ -1,6 +1,6 @@
-name: Hello Composite Action
+name: Performance Test Action
 
-description: My first composite action
+description: Run a simple performance test
 
 inputs:
   environment:
@@ -10,6 +10,11 @@ inputs:
   threads:
     description: Number of threads
     required: true
+
+outputs:
+  test-result:
+    description: Performance test result
+    value: ${{ steps.test.outputs.result }}
 
 runs:
   using: composite
@@ -22,6 +27,8 @@ runs:
         echo "Threads: ${{ inputs.threads }}"
 
     - name: Run performance test
+      id: test
       shell: bash
       run: |
         echo "Running performance test..."
+        echo "result=passed" >> "$GITHUB_OUTPUT"
